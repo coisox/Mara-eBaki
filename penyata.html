@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import materialize.css-->
+        <link rel="stylesheet" href="materialize/css/materialize.min.css">
+        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/jquery.easy-pie-chart.css">
+      
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        
+        <!--Import jQuery before materialize.js-->
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="materialize/js/materialize.min.js"></script>
+        <script src="js/jquery.easypiechart.min.js"></script>
+    </head>
+
+    <body>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="" class="input-field" onclick="history.go(-1)">
+                        <i class="mdi-navigation-chevron-left prefix"></i>
+                        <img class="nav-logo" src="img/logo_ebaki_solo.svg">
+                        <label>Penyata</label>
+                    </a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large right"><i class="mdi-navigation-menu"></i></a>
+                    <ul class="side-nav" id="mobile-demo">
+                        <li class="profile-container"><div class="profile-background"></div><span class="profile-pic"></span><span class="profile-name">Siti Nurhaliza bt Tarudin</span></li>
+                        <li><a href="profil.html"><i class="mdi-social-person left"></i>Gambar Profil</a></li>
+                        <li><a href="hubungi.html"><i class="mdi-communication-call left"></i>Hubungi Kami</a></li>
+                        <li><a href="penafian.html"><i class="mdi-alert-warning left"></i>Penafian</a></li>
+                        <li><a href="index.html"><i class="mdi-action-lock left"></i>Log Keluar</a></li>
+                    </ul>
+                </div>
+            </nav>          
+        </div>
+        
+        <div class="row gap-top">
+            <div class="col s4 chart-container">
+                <div id="chart1"></div>
+                <font color="4BBBC4">Baki Biasiswa</font>
+            </div>
+            <div class="col s4 chart-container">
+                <div id="chart2"></div>
+                <font color="05A0FF">Baki Pinjaman</font>
+            </div>
+            <div class="col s4 chart-container">
+                <div id="chart3"></div>
+                <font color="AB6AB2">Tunggakan</font>
+            </div>
+        </div>
+        
+        <div style="padding:20px 15px 0 15px">
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Tarikh</th>
+                        <th>Rujukan</th>
+                        <th>Debit</th>
+                        <th>Kredit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01/12/2014</td>
+                        <td>Baki B/K</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>25/12/2014</td>
+                        <td>8003041450</td>
+                        <td>0.00</td>
+                        <td>-200.00</td>
+                    </tr>
+                    <tr>
+                        <td>27/01/2015</td>
+                        <td>8003041450</td>
+                        <td>0.00</td>
+                        <td>-200.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a href="#modal_search" class="btn-floating btn-large red">
+                <i class="large mdi-action-search"></i>
+            </a>
+        </div>
+        
+        <div id="modal_search" class="modal">
+            <div class="modal-content">
+                <div class="input-field">
+                    <input id="global_search" type="text" onkeyup="globalSearch()">
+                    <label for="global_search">Carian</label>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function(){
+                $(".button-collapse").sideNav({edge: 'right'});
+                $('.btn-floating').leanModal();
+                
+                loadData();
+                getProfile();
+                globalSearch();
+			});
+            
+            function loadData() {
+                var option = {
+                    trackColor: '#EEEFF0',
+                    scaleColor: false,
+                    lineWidth: 6,
+                    size: 90
+                }
+                
+                //get data from ajax here then set the value to data-percent attribute below
+                //  for Chart1: Katakan jumlah biasiswa 30k dan telah terima 20k. So baki biasiswa ialah 33%
+                //  for Chart2: Katakan jumlah pinjaman 30k dan telah terima 15k. So baki biasiswa ialah 50%
+                //  for Chart3: Katakan installment dah masuk bulan ke-7 di mana setiap bulan RM200, tp dah 5 bulan tak bayar. So tunggakan ialah 71% (round to nearest integer)
+                //  reference : http://rendro.github.io/easy-pie-chart
+                
+                option.barColor = '#4BBBC4';
+                $('#chart1').attr('data-percent','33').easyPieChart(option).prepend('<font color="'+option.barColor+'">RM10,000</font>');
+                
+                option.barColor = '#05A0FF';
+                $('#chart2').attr('data-percent','50').easyPieChart(option).prepend('<font color="'+option.barColor+'">RM15,000</font>');
+                
+                option.barColor = '#AB6AB2';
+                $('#chart3').attr('data-percent','71').easyPieChart(option).prepend('<font color="'+option.barColor+'">RM1,000</font>');
+            }
+            
+            function getProfile() {
+                $('.profile-background, .profile-pic').css('background-image', 'url(img/avatar.jpg)');
+            }
+            
+            function globalSearch() {
+                $('#global_search').keyup(function(e) {
+                    if (e.which==13) {
+                        $('#modal_search').closeModal();
+                    }
+                    else {
+                        $('table tbody tr').each(function() {
+                            $(this).show();
+                            if($(this).text().toLowerCase().indexOf($.trim($('#global_search').val().toLowerCase()))<0) $(this).hide();
+                        });
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>

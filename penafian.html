@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import materialize.css-->
+        <link rel="stylesheet" href="materialize/css/materialize.min.css">
+        <link rel="stylesheet" href="css/custom.css">
+      
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        
+        <!--Import jQuery before materialize.js-->
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="materialize/js/materialize.min.js"></script>
+    </head>
+
+    <body>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="" class="input-field" onclick="history.go(-1)">
+                        <i class="mdi-navigation-chevron-left prefix"></i>
+                        <img class="nav-logo" src="img/logo_ebaki_solo.svg">
+                        <label>Penafian</label>
+                    </a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large right"><i class="mdi-navigation-menu"></i></a>
+                    <ul class="side-nav" id="mobile-demo">
+                        <li class="profile-container"><div class="profile-background"></div><span class="profile-pic"></span><span class="profile-name">Siti Nurhaliza bt Tarudin</span></li>
+                        <li><a href="profil.html"><i class="mdi-social-person left"></i>Gambar Profil</a></li>
+                        <li><a href="hubungi.html"><i class="mdi-communication-call left"></i>Hubungi Kami</a></li>
+                        <li><a href="penafian.html"><i class="mdi-alert-warning left"></i>Penafian</a></li>
+                        <li><a href="index.html"><i class="mdi-action-lock left"></i>Log Keluar</a></li>
+                    </ul>
+                </div>
+            </nav>          
+        </div>
+        
+        <div class="row">
+            <div class="col s12 center-align">
+                <img class="logo-mara" src="img/logo_mara.svg"><br>
+                <div class="justify">
+                    Kemudahan hak masuk kepada applikasi e-Baki MARA ini adalah kepada pengguna yang ada kemudahan MARA sahaja. Kemudahan ini membolehkan pengguna menyemak baki Biasiswa & Pinjaman Pelajaran / Pinjaman Komputer / Pendahuluan Pinjaman Pelajaran MARA serta penyata bagi tahun semasa melalui halaman MARA
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function(){
+                $(".button-collapse").sideNav({edge: 'right'});
+                $('.btn-floating').leanModal();
+                
+                getProfile();
+			});
+            
+            function getProfile() {
+                $('.profile-background, .profile-pic').css('background-image', 'url(img/avatar.jpg)');
+            }
+        </script>
+    </body>
+</html>

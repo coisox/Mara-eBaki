@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import materialize.css-->
+        <link rel="stylesheet" href="materialize/css/materialize.min.css">
+        <link rel="stylesheet" href="css/custom.css">
+      
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        
+        <!--Import jQuery before materialize.js-->
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="materialize/js/materialize.min.js"></script>
+    </head>
+
+    <body class="login">
+        <form action="dashboard.html">
+            <div class="row">
+                <div class="col s8 offset-s2 center-align">
+                    <img src="img/logo_ebaki_login.svg">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8 offset-s2">
+                    <i class="mdi-action-account-box prefix"></i>
+                    <input id="user_id" type="text">
+                    <label for="user_id">ID Pengguna</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8 offset-s2">
+                    <i class="mdi-action-lock prefix"></i>
+                    <input id="user_password" type="text">
+                    <label for="user_password">Kata Laluan</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s8 offset-s2">
+                    <a class="login-button btn btn-block waves-effect waves-light" onclick="checkLogin()">Hantar</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s8 offset-s2 center-align footer">
+                    <a href="http://apps.mara.gov.my/ebakiv2/_lupakatalaluanpengguna.aspx">Lupa Kata Laluan</a> | <a href="http://apps.mara.gov.my/ebakiv2/_daftarPengguna.aspx">Pengguna Baru</a>
+                </div>
+            </div>
+        </form>
+        
+        <div id="modal_error" class="modal">
+            <div class="modal-content">
+                <font color="black">Kombinasi id pengguna dan kata laluan salah</font>
+            </div>
+        </div>
+        
+        <script>
+            function checkLogin() {
+                if($('#user_id').val()=="" || $('#user_password').val()=="") {
+                    $('#modal_error').openModal();
+                }
+                else {
+                    $('form').submit();
+                }
+            }
+        </script>
+    </body>
+</html>

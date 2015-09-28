@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import materialize.css-->
+        <link rel="stylesheet" href="materialize/css/materialize.min.css">
+        <link rel="stylesheet" href="css/custom.css">
+      
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        
+        <!--Import jQuery before materialize.js-->
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="materialize/js/materialize.min.js"></script>
+    </head>
+
+    <body>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="" class="input-field" onclick="history.go(-1)">
+                        <i class="mdi-navigation-chevron-left prefix"></i>
+                        <img class="nav-logo" src="img/logo_ebaki_solo.svg">
+                        <label>Hubungi&nbsp;Kami</label>
+                    </a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large right"><i class="mdi-navigation-menu"></i></a>
+                    <ul class="side-nav" id="mobile-demo">
+                        <li class="profile-container"><div class="profile-background"></div><span class="profile-pic"></span><span class="profile-name">Siti Nurhaliza bt Tarudin</span></li>
+                        <li><a href="profil.html"><i class="mdi-social-person left"></i>Gambar Profil</a></li>
+                        <li><a href="hubungi.html"><i class="mdi-communication-call left"></i>Hubungi Kami</a></li>
+                        <li><a href="penafian.html"><i class="mdi-alert-warning left"></i>Penafian</a></li>
+                        <li><a href="index.html"><i class="mdi-action-lock left"></i>Log Keluar</a></li>
+                    </ul>
+                </div>
+            </nav>          
+        </div>
+        
+        <div class="row">
+            <div class="col s12">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header">
+                            <div class="left">Bagi pelajar yang masih menerima elaun dan belum menerima jadual bayaran balik</div>
+                        </div>
+                        <div class="collapsible-body">
+                            <div class="left">
+                                <b>Bahagian Penganjuran Pelajaran MARA</b><br>
+                                <b>Tel:</b> 03-2613 2000 sambungan:<br><br>
+                                32060 / 32012 / 32052 / 32017 / 32024 / 32090 / 32004 / 32030 / 32036 / 32040 / 32100
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                            <div class="left">Bagi pelajar yang tamat pembelajaran dan telah menerima jadual bayaran balik</div>
+                        </div>
+                        <div class="collapsible-body">
+                            <div class="left">
+                                <b>Bahagian Kawalan Kredit MARA</b><br>
+                                <b>Tel:</b> 03-2613 2000 sambungan:<br><br>
+                                32286 / 32178 / 32136 / 32133 / 32131 / 32399 / 32288 / 32192
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                                <div class="left">Bagi pelajar yang dikenakan tindakan undang-undang</div>
+                        </div>
+                        <div class="collapsible-body">
+                            <div class="left">
+                                <b>Bahagian Undang-Undang MARA</b><br>
+                                <b>Tel:</b> 03-2613 2000 sambungan:<br><br>
+                                34102 / 34120 / 34104
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                                <div class="left">Bagi pertanyaan atau perbezaan maklumat berkenaan transaksi</div>
+                        </div>
+                        <div class="collapsible-body">
+                            <div class="left">
+                                <b>Bahagian Kewangan MARA</b><br>
+                                <b>Tel:</b> 03-2613 2000 sambungan:<br><br>
+                                34202 / 34138 / 34203 / 34226 / 34231 / 34243 / 39017 / 34199 / 34204 / 34183
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                                <div class="left">Bagi urusan permohonan pengurangan bayaran balik pinjaman</div>
+                        </div>
+                        <div class="collapsible-body">
+                            <div class="left">
+                                <b>Unit Conversion Bahagian Kawalan Kredit MARA</b><br>
+                                <b>Tel:</b> 03-2613 2000 sambungan:<br><br>
+                                32287 / 32175 / 32181 / 32180
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a href="#modal_search" class="btn-floating btn-large red">
+                <i class="large mdi-action-search"></i>
+            </a>
+        </div>
+        
+        <div id="modal_search" class="modal">
+            <div class="modal-content">
+                <div class="input-field">
+                    <input id="global_search" type="text" onkeyup="globalSearch()">
+                    <label for="global_search">Carian</label>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function(){
+                $(".button-collapse").sideNav({edge: 'right'});
+                $('.btn-floating').leanModal();
+                
+                loadData();
+                getProfile();
+                globalSearch();
+			});
+            
+            function loadData() {
+                $('.collapsible').collapsible({accordion: false});
+            }
+            
+            function getProfile() {
+                $('.profile-background, .profile-pic').css('background-image', 'url(img/avatar.jpg)');
+            }
+            
+            function globalSearch() {
+                $('#global_search').keyup(function(e) {
+                    if (e.which==13) {
+                        $('#modal_search').closeModal();
+                    }
+                    else {
+                        $('.collapsible li').each(function() {
+                            $(this).show();
+                            if($(this).text().toLowerCase().indexOf($.trim($('#global_search').val().toLowerCase()))<0) $(this).hide();
+                        });
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
